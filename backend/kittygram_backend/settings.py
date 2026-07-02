@@ -5,9 +5,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mraksdev-kittygram.duckdns.org', '127.0.0.1']
+
+CSRF_TRUSTED_ORIGINS = ['https://mraksdev-kittygram.duckdns.org']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -81,8 +83,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
 USE_I18N = True
 
 USE_L10N = True
@@ -91,6 +91,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/kittygram/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/kittygram/media/'
