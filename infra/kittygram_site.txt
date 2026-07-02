@@ -1,0 +1,5 @@
+IP: 158.160.178.18;
+name_taski: https://mraksdev-yandex.servehalflife.com;
+name_kittygram: https://mraksdev-kittygram.duckdns.org;
+login: alex;
+password: 8426;

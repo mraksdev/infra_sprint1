@@ -1,0 +1,78 @@
+server {
+    server_name 158.160.178.18 mraksdev-yandex.servehalflife.com;
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000;
+    }
+    
+    location /admin/ {
+        proxy_pass http://127.0.0.1:8000;
+    }
+    
+    location / {
+        root   /var/www/taski;
+        index  index.html index.htm;
+        try_files $uri /index.html;
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mraksdev-yandex.servehalflife.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mraksdev-yandex.servehalflife.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = mraksdev-yandex.servehalflife.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+
+    listen 80;
+    server_name 158.160.178.18 mraksdev-yandex.servehalflife.com;
+    return 404; # managed by Certbot
+
+
+}
+
+server {
+    server_name mraksdev-kittygram.duckdns.org;
+
+    location /api/ {
+        client_max_body_size 20M;
+        proxy_pass http://127.0.0.1:8080;
+    }
+
+    location /admin/ {
+        client_max_body_size 20M;
+        proxy_pass http://127.0.0.1:8080;
+    }
+
+    location /media/ {
+        alias /var/www/kittygram/media/;
+    }
+
+    location / {
+        root /var/www/kittygram;
+        index index.html index.htm;
+        try_files $uri /index.html;
+    }
+
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/mraksdev-kittygram.duckdns.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/mraksdev-kittygram.duckdns.org/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+
+server {
+    if ($host = mraksdev-kittygram.duckdns.org) {
+        return 301 https://$host$request_uri;
+    }
+
+    listen 80;
+    server_name mraksdev-kittygram.duckdns.org;
+    return 404;
+}
