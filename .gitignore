@@ -136,6 +136,10 @@ media/
 
 backend/static_backend
 
+# Данные развёртывания: IP, имена сайтов, логин и пароль сервера.
+# Хранятся локально, в репозиторий не попадают.
+infra/*_site.txt
+
 # FRONTEND
 
 # dependencies
